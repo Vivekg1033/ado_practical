@@ -1,0 +1,14 @@
+version: 0.2
+phases:
+  build:
+    commands:
+      - echo "Building the application..."
+  post_build:
+    commands:
+      - aws s3 cp index.html s3://my-53-web-bucket/index.html --content-type "text/html"
+artifacts:
+  files:
+    - index.html
+    - appspec.yml
+    - scripts/**/* # Include the entire scripts directory
+  discard-paths: no # Important! Maintains directory structure
